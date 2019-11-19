@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, StatusBar } from 'react-native'
+import { SafeAreaView, StyleSheet, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import { CardItem, Card, View, Header, Left, Button, Icon, DatePicker } from 'native-base'
+import { CardItem, Card, View, Header, Text, Left, Button, Icon, DatePicker } from 'native-base'
 import { addTodo } from '../actions'
 
 const styles = StyleSheet.create({
@@ -61,7 +61,7 @@ const CreateScreen = ({ navigation }) => {
       </Header>
       <SafeAreaView>
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>CreateScreen</Text>
+          <Text style={styles.sectionTitle}>Список дел</Text>
           <Text style={styles.sectionDescription}>
             Edit <Text style={styles.highlight}>App.js</Text> to change this screen and then come back to see your
             edits.
@@ -85,6 +85,9 @@ const CreateScreen = ({ navigation }) => {
             onDateChange={setDate}
             disabled={false}
           />
+          <Button primary onPress={() => navigation.navigate('Modal')}>
+            <Text>Добавить</Text>
+          </Button>
         </View>
       </SafeAreaView>
     </>
