@@ -56,10 +56,8 @@ const DoneScreen = ({ navigation }) => (
     </Header>
     <SafeAreaView>
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>DoneScreen</Text>
-        <Text style={styles.sectionDescription}>
-          Edit <Text style={styles.highlight}>App.js</Text> to change this screen and then come back to see your edits.
-        </Text>
+        <Text style={styles.sectionTitle}>Выполненные дела</Text>
+        <Text style={styles.sectionDescription}>Здесь хранятся выполненные дела</Text>
         <Card>
           <CardItem header button onPress={() => alert('This is Card Header')}>
             <Text>NativeBase</Text>
