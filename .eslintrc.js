@@ -5,11 +5,11 @@ module.exports = {
   plugins: ['react', 'react-native', 'jsx-a11y', 'import'],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   env: {
-    'react-native/react-native': true,
+    'react-native/react-native': true
   },
   rules: {
     'react/jsx-filename-extension': ['off'],
@@ -25,6 +25,7 @@ module.exports = {
     'spaced-comment': 0,
     'comma-dangle': ['error', 'never'],
     'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 0,
     'no-extra-boolean-cast': 0,
     'quote-props': 0,
     'object-curly-spacing': ['error', 'always'],
@@ -50,13 +51,13 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'react-native/no-color-literals': 0,
     'react-native/no-raw-text': 0,
-    'consistent-return': 0,
+    'consistent-return': 0
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.ios.js', '.android.js'],
-      },
-    },
-  },
-};
+        extensions: ['.js', '.ios.js', '.android.js']
+      }
+    }
+  }
+}
