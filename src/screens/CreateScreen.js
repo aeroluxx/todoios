@@ -62,10 +62,6 @@ const CreateScreen = ({ navigation }) => {
       <SafeAreaView>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Список дел</Text>
-          <Text style={styles.sectionDescription}>
-            Edit <Text style={styles.highlight}>App.js</Text> to change this screen and then come back to see your
-            edits.
-          </Text>
           <Card>
             <CardItem header button onPress={() => alert('This is Card Header')}>
               <Text>{String(date)}</Text>
