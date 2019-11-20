@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, StatusBar } from 'react-native'
+import React from 'react'
+import { SafeAreaView, StyleSheet, StatusBar, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import { CardItem, Card, View, Header, Text, Left, Button, Icon, DatePicker } from 'native-base'
+import { CardItem, Card, View, Header, Text, Left, Button, Icon } from 'native-base'
 import { addTodo } from '../actions'
 
 const styles = StyleSheet.create({
@@ -27,28 +27,29 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: Colors.black
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark
+  buttonAdd: {
+    borderRadius: 50,
+    backgroundColor: 'blue',
+    width: 100,
+    height: 100,
+    position: 'absolute',
+    bottom: 0,
+    marginBottom: 30,
+    right: 10,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  highlight: {
-    fontWeight: '700'
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
+  buttonAddPlus: {
+    fontSize: 24,
     fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right'
+    color: Colors.white
   }
 })
 ////eslint-disable-next-line
 const CreateScreen = ({ navigation }) => {
-  const [date, setDate] = useState(new Date())
-  //console.log(date)
+  const date = new Date()
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -63,29 +64,15 @@ const CreateScreen = ({ navigation }) => {
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Список дел</Text>
           <Card>
-            <CardItem header button onPress={() => alert('This is Card Header')}>
+            <CardItem header button onPress={() => alert('Удалить')}>
               <Text>{String(date)}</Text>
             </CardItem>
           </Card>
-          <DatePicker
-            defaultDate={date}
-            minimumDate={new Date()}
-            locale="ru"
-            timeZoneOffsetInMinutes={undefined}
-            modalTransparent={false}
-            animationType="fade"
-            androidMode="default"
-            placeHolderText="Выберите дату"
-            textStyle={{ color: 'green' }}
-            placeHolderTextStyle={{ color: '#d3d3d3' }}
-            onDateChange={setDate}
-            disabled={false}
-          />
-          <Button primary onPress={() => navigation.navigate('Modal')}>
-            <Text>Добавить</Text>
-          </Button>
         </View>
       </SafeAreaView>
+      <TouchableOpacity style={styles.buttonAdd} onPress={() => navigation.navigate('Modal')}>
+        <Text style={styles.buttonAddPlus}>+</Text>
+      </TouchableOpacity>
     </>
   )
 }

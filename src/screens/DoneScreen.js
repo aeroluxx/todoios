@@ -44,28 +44,30 @@ const styles = StyleSheet.create({
   }
 })
 ////eslint-disable-next-line
-const DoneScreen = ({ navigation }) => (
-  <>
-    <StatusBar barStyle="dark-content" />
-    <Header>
-      <Left>
-        <Button transparent onPress={() => navigation.openDrawer()}>
-          <Icon name="menu" />
-        </Button>
-      </Left>
-    </Header>
-    <SafeAreaView>
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Выполненные дела</Text>
-        <Text style={styles.sectionDescription}>Здесь хранятся выполненные дела</Text>
-        <Card>
-          <CardItem header button onPress={() => alert('This is Card Header')}>
-            <Text>NativeBase</Text>
-          </CardItem>
-        </Card>
-      </View>
-    </SafeAreaView>
-  </>
-)
+const DoneScreen = ({ navigation }) => {
+  const date = new Date()
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.openDrawer()}>
+            <Icon name="menu" />
+          </Button>
+        </Left>
+      </Header>
+      <SafeAreaView>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Выполненные дела</Text>
+          <Card>
+            <CardItem header button onPress={() => alert('Удалить')}>
+              <Text>{String(date)}</Text>
+            </CardItem>
+          </Card>
+        </View>
+      </SafeAreaView>
+    </>
+  )
+}
 
 export default DoneScreen

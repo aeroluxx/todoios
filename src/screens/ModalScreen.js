@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, StatusBar } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 
-import { Card, View, Button, DatePicker } from 'native-base'
+import { Card, Text, Button, DatePicker, Container } from 'native-base'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -18,29 +18,15 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     marginTop: 32,
-    paddingHorizontal: 24
+    paddingHorizontal: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: Colors.black
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: '700'
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right'
   }
 })
 ////eslint-disable-next-line
@@ -48,11 +34,10 @@ const ModalScreen = ({ navigation }) => {
   const [date, setDate] = useState(new Date())
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>МОДАЛЬНОЕ ОКНО</Text>
-          <Card>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Container>
+          <Text style={styles.sectionTitle}>Добавить дело</Text>
+          <Card style={{ height: '50%', width: '90%' }}>
             <DatePicker
               defaultDate={date}
               minimumDate={new Date()}
@@ -67,9 +52,11 @@ const ModalScreen = ({ navigation }) => {
               onDateChange={setDate}
               disabled={false}
             />
-            <Button onPress={() => navigation.goBack()} />
           </Card>
-        </View>
+          <Button rounded onPress={() => navigation.goBack()}>
+            <Text>Добавить</Text>
+          </Button>
+        </Container>
       </SafeAreaView>
     </>
   )
