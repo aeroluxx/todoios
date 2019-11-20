@@ -1,35 +1,19 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, StatusBar, TouchableOpacity } from 'react-native'
+import { SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-
-import { CardItem, Card, View, Header, Text, Left, Button, Icon } from 'native-base'
+import { Header, Text, Left, Button, Icon, H2 } from 'native-base'
 import { addTodo } from '../actions'
+import TodoItem from '../components/TodoItem'
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: 'absolute',
-    right: 0
-  },
-  body: {
-    backgroundColor: Colors.white
-  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black
-  },
   buttonAdd: {
     borderRadius: 50,
-    backgroundColor: 'blue',
+    backgroundColor: '#0091ea',
     width: 100,
     height: 100,
     position: 'absolute',
@@ -46,13 +30,10 @@ const styles = StyleSheet.create({
     color: Colors.white
   }
 })
-////eslint-disable-next-line
+//eslint-disable-next-line
 const CreateScreen = ({ navigation }) => {
-  const date = new Date()
-
   return (
     <>
-      <StatusBar barStyle="dark-content" />
       <Header>
         <Left>
           <Button transparent onPress={() => navigation.openDrawer()}>
@@ -60,15 +41,11 @@ const CreateScreen = ({ navigation }) => {
           </Button>
         </Left>
       </Header>
-      <SafeAreaView>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Список дел</Text>
-          <Card>
-            <CardItem header button onPress={() => alert('Удалить')}>
-              <Text>{String(date)}</Text>
-            </CardItem>
-          </Card>
-        </View>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView style={styles.sectionContainer}>
+          <H2>Список дел</H2>
+          <TodoItem />
+        </ScrollView>
       </SafeAreaView>
       <TouchableOpacity style={styles.buttonAdd} onPress={() => navigation.navigate('Modal')}>
         <Text style={styles.buttonAddPlus}>+</Text>

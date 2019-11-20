@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
-
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-
-import { Card, Text, Button, DatePicker, Container } from 'native-base'
+import { Card, Text, Button, DatePicker, Textarea, CardItem, Right, Left, Icon, H2 } from 'native-base'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -17,11 +15,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white
   },
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
+    flex: 1,
+    marginHorizontal: 14,
+    justifyContent: 'center'
   },
   sectionTitle: {
     fontSize: 24,
@@ -31,32 +27,59 @@ const styles = StyleSheet.create({
 })
 ////eslint-disable-next-line
 const ModalScreen = ({ navigation }) => {
-  const [date, setDate] = useState(new Date())
+  const [date0, setDate0] = useState(new Date())
+  const [date1, setDate1] = useState(new Date())
   return (
     <>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Container>
-          <Text style={styles.sectionTitle}>Добавить дело</Text>
-          <Card style={{ height: '50%', width: '90%' }}>
+      <SafeAreaView style={styles.sectionContainer}>
+        <Card>
+          <CardItem bordered>
+            <H2>Добавить дело</H2>
+          </CardItem>
+          <CardItem bordered>
+            <Textarea rowSpan={3} style={{ flex: 1 }} placeholder="Введите текст" />
+          </CardItem>
+          <CardItem bordered>
             <DatePicker
-              defaultDate={date}
+              defaultDate={date0}
               minimumDate={new Date()}
               locale="ru"
               timeZoneOffsetInMinutes={undefined}
               modalTransparent={false}
               animationType="fade"
               androidMode="default"
-              placeHolderText="Выберите дату"
-              textStyle={{ color: 'green' }}
-              placeHolderTextStyle={{ color: '#d3d3d3' }}
-              onDateChange={setDate}
+              placeHolderText="Начать"
+              textStyle={{ color: 'black' }}
+              placeHolderTextStyle={{ color: 'black' }}
+              onDateChange={setDate0}
               disabled={false}
             />
-          </Card>
-          <Button rounded onPress={() => navigation.goBack()}>
-            <Text>Добавить</Text>
-          </Button>
-        </Container>
+            <DatePicker
+              defaultDate={date1}
+              minimumDate={new Date()}
+              locale="ru"
+              timeZoneOffsetInMinutes={undefined}
+              modalTransparent={false}
+              animationType="fade"
+              androidMode="default"
+              placeHolderText="Закончить"
+              textStyle={{ color: 'black' }}
+              placeHolderTextStyle={{ color: 'black' }}
+              onDateChange={setDate1}
+              disabled={false}
+            />
+          </CardItem>
+          <CardItem footer bordered>
+            <Left />
+            <Right>
+              <Button iconLeft rounded big onPress={() => navigation.goBack()}>
+                <Icon name="paper-plane" />
+                <Text>Создать</Text>
+              </Button>
+            </Right>
+            {/*<Text>{date.toString().substr(4, 12)}</Text>*/}
+          </CardItem>
+        </Card>
       </SafeAreaView>
     </>
   )

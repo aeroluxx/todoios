@@ -1,54 +1,18 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, StatusBar } from 'react-native'
-
-import { Colors } from 'react-native/Libraries/NewAppScreen'
-
-import { CardItem, Card, View, Header, Left, Button, Icon } from 'native-base'
+import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { Header, Left, Button, Icon, H2 } from 'native-base'
+import TodoItem from '../components/TodoItem'
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: 'absolute',
-    right: 0
-  },
-  body: {
-    backgroundColor: Colors.white
-  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: '700'
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right'
   }
 })
-////eslint-disable-next-line
+//eslint-disable-next-line
 const DoneScreen = ({ navigation }) => {
-  const date = new Date()
   return (
     <>
-      <StatusBar barStyle="dark-content" />
       <Header>
         <Left>
           <Button transparent onPress={() => navigation.openDrawer()}>
@@ -56,15 +20,11 @@ const DoneScreen = ({ navigation }) => {
           </Button>
         </Left>
       </Header>
-      <SafeAreaView>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Выполненные дела</Text>
-          <Card>
-            <CardItem header button onPress={() => alert('Удалить')}>
-              <Text>{String(date)}</Text>
-            </CardItem>
-          </Card>
-        </View>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView style={styles.sectionContainer}>
+          <H2>Выполненные делa</H2>
+          <TodoItem />
+        </ScrollView>
       </SafeAreaView>
     </>
   )
