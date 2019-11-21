@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Header, Left, Button, Icon, H2 } from 'native-base'
 import TodoItem from '../components/TodoItem'
 
@@ -14,9 +14,15 @@ const styles = StyleSheet.create({
 const DoneScreen = ({ navigation }) => {
   const todoList = useSelector(state => state.todo_reducer.todos)
 
+  const dispatch = useDispatch()
+
+  const deleteTodo = todo => {
+    dispatch({ type: 'DELETE_TODO', todo })
+  }
+
   let listItem = []
   if (todoList.length > 0) {
-    listItem = todoList.filter(x => x.done).map(todo => <TodoItem key={todo.index} todo={todo} />)
+    listItem = todoList.map(todo => <TodoItem key={todo.index} todo={todo} deleteTodo={deleteTodo} />)
   }
   return (
     <>

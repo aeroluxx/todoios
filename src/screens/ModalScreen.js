@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { Card, Text, Button, DatePicker, Textarea, CardItem, Right, Left, Icon, H2 } from 'native-base'
 import { useDispatch } from 'react-redux'
-//import { addTodo } from '../reducers'
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -20,6 +19,12 @@ const ModalScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    if (todo.title) {
+      dispatch({ type: 'ADD_TODO', todo })
+    }
+  }, [todo])
+
   const createTodo = () => {
     setTodo({
       start: date1.toString().substr(4, 12),
@@ -27,14 +32,13 @@ const ModalScreen = ({ navigation }) => {
       title: txt,
       done: false,
       trash: false,
-      index: Math.round(Math.random() * 500)
+      index: Date.now().toString()
     })
-    dispatch({ type: 'ADD_TODO', todo })
   }
 
   const toggleTodo = () => {
-    navigation.goBack()
     createTodo()
+    navigation.goBack()
   }
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Header, Text, Left, Button, Icon, H2 } from 'native-base'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import TodoItem from '../components/TodoItem'
 
 const styles = StyleSheet.create({
@@ -30,12 +30,24 @@ const styles = StyleSheet.create({
   }
 })
 //eslint-disable-next-line
-const CreateScreen = ({ navigation, props }) => {
+const CreateScreen = ({ navigation }) => {
   const todoList = useSelector(state => state.todo_reducer.todos)
+
+  const dispatch = useDispatch()
+
+  const deleteTodo = todo => {
+    dispatch({ type: 'DELETE_TODO', todo })
+  }
+
+  const updateTodo = todo => {
+    dispatch({ type: 'UPDATE_TODO', todo })
+  }
 
   let listItem = []
   if (todoList.length > 0) {
-    listItem = todoList.filter(x => !x.done).map(todo => <TodoItem key={todo.index} todo={todo} />)
+    listItem = todoList.map(todo => (
+      <TodoItem key={todo.index} todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
+    ))
   }
 
   return (

@@ -16,8 +16,8 @@ export default function todo_reducer(state = initialState, action) {
       //eslint-disable-next-line
       let todos = [...state.todos]
       //eslint-disable-next-line
-      let indexOfUpdate = todos.findIndex(todo => todo.title === action.todo.title)
-      todos[indexOfUpdate] = action.todo
+      let indexOfUpdate = todos.findIndex(todo => todo.done === action.todo.done)
+      todos[indexOfUpdate] = action.todo.done
       return {
         ...state,
         todos
@@ -25,7 +25,7 @@ export default function todo_reducer(state = initialState, action) {
     case DELETE_TODO:
       return {
         todos: state.todos.filter(todo => {
-          return todo.title !== action.todo.title
+          return todo.index !== action.todo.index
         })
       }
     default:
