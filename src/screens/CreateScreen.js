@@ -59,7 +59,7 @@ const CreateScreen = ({ navigation }) => {
           </Button>
         </Left>
       </Header>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'ghostwhite' }}>
         <ScrollView style={styles.sectionContainer}>
           <H2>Список дел</H2>
           {listItem}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
-import { Card, Text, Button, DatePicker, Textarea, CardItem, Right, Left, Icon, H2 } from 'native-base'
+import { Card, Text, Button, DatePicker, Textarea, CardItem, Right, Left, Icon, H2, View } from 'native-base'
 import { useDispatch } from 'react-redux'
 
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    marginHorizontal: 14,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginHorizontal: 14
   }
 })
 ////eslint-disable-next-line
@@ -42,7 +42,7 @@ const ModalScreen = ({ navigation }) => {
   }
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: 'ghostwhite' }}>
       <SafeAreaView style={styles.sectionContainer}>
         <Card>
           <CardItem bordered>
@@ -92,7 +92,7 @@ const ModalScreen = ({ navigation }) => {
           </CardItem>
         </Card>
       </SafeAreaView>
-    </>
+    </View>
   )
 }
 
