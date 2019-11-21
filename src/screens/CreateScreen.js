@@ -1,9 +1,8 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
-import { connect } from 'react-redux'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Header, Text, Left, Button, Icon, H2 } from 'native-base'
-import { addTodo } from '../actions'
+import { useSelector } from 'react-redux'
 import TodoItem from '../components/TodoItem'
 
 const styles = StyleSheet.create({
@@ -31,7 +30,14 @@ const styles = StyleSheet.create({
   }
 })
 //eslint-disable-next-line
-const CreateScreen = ({ navigation }) => {
+const CreateScreen = ({ navigation, props }) => {
+  const todoList = useSelector(state => state.todo_reducer.todos)
+
+  let listItem = []
+  if (todoList.length > 0) {
+    listItem = todoList.filter(x => !x.done).map(todo => <TodoItem key={todo.index} todo={todo} />)
+  }
+
   return (
     <>
       <Header>
@@ -44,7 +50,7 @@ const CreateScreen = ({ navigation }) => {
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={styles.sectionContainer}>
           <H2>Список дел</H2>
-          <TodoItem />
+          {listItem}
         </ScrollView>
       </SafeAreaView>
       <TouchableOpacity style={styles.buttonAdd} onPress={() => navigation.navigate('Modal')}>
@@ -54,4 +60,4 @@ const CreateScreen = ({ navigation }) => {
   )
 }
 
-export default connect(null, { addTodo })(CreateScreen)
+export default CreateScreen

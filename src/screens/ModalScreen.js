@@ -1,34 +1,42 @@
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Card, Text, Button, DatePicker, Textarea, CardItem, Right, Left, Icon, H2 } from 'native-base'
+import { useDispatch } from 'react-redux'
+//import { addTodo } from '../reducers'
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: 'absolute',
-    right: 0
-  },
-  body: {
-    backgroundColor: Colors.white
-  },
   sectionContainer: {
     flex: 1,
     marginHorizontal: 14,
     justifyContent: 'center'
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black
   }
 })
 ////eslint-disable-next-line
 const ModalScreen = ({ navigation }) => {
   const [date0, setDate0] = useState(new Date())
   const [date1, setDate1] = useState(new Date())
+  const [txt, setTxt] = useState('Введите текст')
+  const [todo, setTodo] = useState({})
+
+  const dispatch = useDispatch()
+
+  const createTodo = () => {
+    setTodo({
+      start: date1.toString().substr(4, 12),
+      finish: date0.toString().substr(4, 12),
+      title: txt,
+      done: false,
+      trash: false,
+      index: Math.round(Math.random() * 500)
+    })
+    dispatch({ type: 'ADD_TODO', todo })
+  }
+
+  const toggleTodo = () => {
+    navigation.goBack()
+    createTodo()
+  }
+
   return (
     <>
       <SafeAreaView style={styles.sectionContainer}>
@@ -37,7 +45,7 @@ const ModalScreen = ({ navigation }) => {
             <H2>Добавить дело</H2>
           </CardItem>
           <CardItem bordered>
-            <Textarea rowSpan={3} style={{ flex: 1 }} placeholder="Введите текст" />
+            <Textarea rowSpan={3} style={{ flex: 1 }} placeholder={txt} onChangeText={t => setTxt(t)} />
           </CardItem>
           <CardItem bordered>
             <DatePicker
@@ -72,12 +80,11 @@ const ModalScreen = ({ navigation }) => {
           <CardItem footer bordered>
             <Left />
             <Right>
-              <Button iconLeft rounded big onPress={() => navigation.goBack()}>
+              <Button iconLeft rounded big onPress={toggleTodo}>
                 <Icon name="paper-plane" />
                 <Text>Создать</Text>
               </Button>
             </Right>
-            {/*<Text>{date.toString().substr(4, 12)}</Text>*/}
           </CardItem>
         </Card>
       </SafeAreaView>
