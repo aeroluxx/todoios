@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
-import { Header, Text, Left, Button, Icon, H2 } from 'native-base'
+import { Header, Text, Left, Button, Icon, H2, Right } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
 import TodoItem from '../components/TodoItem'
 
@@ -57,6 +57,7 @@ const CreateScreen = ({ navigation }) => {
             <Icon name="menu" />
           </Button>
         </Left>
+        <Right />
       </Header>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'ghostwhite' }}>
         <ScrollView style={styles.sectionContainer}>

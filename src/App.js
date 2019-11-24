@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, YellowBox } from 'react-native'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import ReduxThunk from 'redux-thunk'
 import reducers from './reducers'
@@ -11,6 +11,8 @@ import reducers from './reducers'
 import AppNavigator from './AppNavigator'
 
 //const store = createStore(reducers, composeWithDevTools(applyMiddleware(ReduxThunk)))
+
+YellowBox.ignoreWarnings(['Warning: DatePickerIOS has been merged'])
 
 const persistConfig = {
   key: 'root',

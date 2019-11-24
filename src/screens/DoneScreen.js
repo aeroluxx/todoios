@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, Left, Button, Icon, H2 } from 'native-base'
+import { Header, Left, Button, Icon, H2, Right } from 'native-base'
 import TodoItem from '../components/TodoItem'
 
 const styles = StyleSheet.create({
@@ -39,6 +39,7 @@ const DoneScreen = ({ navigation }) => {
             <Icon name="menu" />
           </Button>
         </Left>
+        <Right />
       </Header>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'ghostwhite' }}>
         <ScrollView style={styles.sectionContainer}>
