@@ -20,12 +20,10 @@ const TodoItem = ({ navigation, todo, deleteTodo, updateTodo }) => {
         </CardItem>
         <CardItem footer bordered>
           <Left>
-            {/*<CheckBox checked={check} color="green" onPress={() => setCheck(!todo.done)} />*/}
             <CheckBox
               checked={todo.done}
               color="green"
               onPress={() => {
-                //updateTodo({ ...todo, done: !todo.done })
                 updateTodo(todo)
                 setCheck(!check)
               }}

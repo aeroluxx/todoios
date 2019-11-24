@@ -1,6 +1,5 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Header, Text, Left, Button, Icon, H2 } from 'native-base'
 import { useSelector, useDispatch } from 'react-redux'
 import TodoItem from '../components/TodoItem'
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
   },
   buttonAdd: {
     borderRadius: 50,
-    backgroundColor: '#0091ea',
+    backgroundColor: 'dodgerblue',
     width: 100,
     height: 100,
     position: 'absolute',
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
   buttonAddPlus: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.white
+    color: 'white'
   }
 })
 //eslint-disable-next-line

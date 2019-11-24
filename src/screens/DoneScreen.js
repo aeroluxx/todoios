@@ -40,7 +40,7 @@ const DoneScreen = ({ navigation }) => {
           </Button>
         </Left>
       </Header>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'ghostwhite' }}>
         <ScrollView style={styles.sectionContainer}>
           <H2>Выполненные делa</H2>
           {listItem}
