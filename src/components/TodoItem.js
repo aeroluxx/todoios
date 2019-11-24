@@ -22,9 +22,10 @@ const TodoItem = ({ navigation, todo, deleteTodo, updateTodo }) => {
           <Left>
             {/*<CheckBox checked={check} color="green" onPress={() => setCheck(!todo.done)} />*/}
             <CheckBox
-              checked={check}
+              checked={todo.done}
               color="green"
               onPress={() => {
+                //updateTodo({ ...todo, done: !todo.done })
                 updateTodo(todo)
                 setCheck(!check)
               }}

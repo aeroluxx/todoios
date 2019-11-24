@@ -14,13 +14,27 @@ export default function todo_reducer(state = initialState, action) {
       }
     case UPDATE_TODO:
       //eslint-disable-next-line
-      let todos = [...state.todos]
+      // let todos = [...state.todos]
       //eslint-disable-next-line
-      let indexOfUpdate = todos.findIndex(todo => todo.done === action.todo.done)
-      todos[indexOfUpdate] = action.todo.done
+      // let indexOfUpdate = todos.findIndex(todo => todo.index == action.todo.index)
+      // todos[indexOfUpdate] = action.todo.index
+      // return {
+      //   ...state,
+      //   todos
+      // }
       return {
-        ...state,
-        todos
+        todos: state.todos.map(todo => {
+          return todo.index === action.todo.index
+            ? {
+              ...todo,
+              done: !todo.done
+            }
+            : {
+              ...todo,
+              done: todo.done
+            }
+          //return todo.done
+        })
       }
     case DELETE_TODO:
       return {

@@ -20,10 +20,17 @@ const DoneScreen = ({ navigation }) => {
     dispatch({ type: 'DELETE_TODO', todo })
   }
 
+  const updateTodo = todo => {
+    dispatch({ type: 'UPDATE_TODO', todo })
+  }
+
   let listItem = []
   if (todoList.length > 0) {
-    listItem = todoList.map(todo => <TodoItem key={todo.index} todo={todo} deleteTodo={deleteTodo} />)
+    listItem = todoList
+      .filter(todo => todo.done)
+      .map(todo => <TodoItem key={todo.index} todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />)
   }
+
   return (
     <>
       <Header>
