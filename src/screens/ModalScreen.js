@@ -49,7 +49,15 @@ const ModalScreen = ({ navigation }) => {
             <H2>Добавить дело</H2>
           </CardItem>
           <CardItem bordered>
-            <Textarea rowSpan={3} style={{ flex: 1 }} value={txt} onChangeText={setTxt} placeholder="Введите текст" />
+            <Textarea
+              rowSpan={3}
+              style={{ flex: 1 }}
+              value={txt}
+              onChangeText={setTxt}
+              placeholder="Введите текст"
+              clearTextOnFocus
+              placeholderTextColor="gray"
+            />
           </CardItem>
           <CardItem bordered>
             <DatePicker
